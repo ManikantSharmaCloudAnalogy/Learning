@@ -12,7 +12,7 @@ const person1: Person = {
 const person2: Person = {
     name: "John",
     age: 30,
-    email: "john@example.com"
+    email: "manikant@example.com"
 };
 
 console.log(person1);
