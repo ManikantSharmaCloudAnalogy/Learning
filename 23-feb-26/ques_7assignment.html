@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <style>
+           body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+           } 
+           .container{
+            display:flex;
+            gap:30px;
+           }
+           table{
+            width:700px;
+            border-collapse: collapse;
+           }
+           table, th ,td{
+             border: 2px solid #999;
+           }
+            th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+            form {
+            width: 400px;
+            padding: 22px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        form input,form textarea{
+            width: 90%;
+            padding: 8px;
+            margin: 6px 0 ;
+        }
+        form button{
+              padding: 8px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+.action-btn {
+            padding: 5px 8px;
+            cursor: pointer;
+        }
+
+        .edit {
+            background-color: orange;
+            color: white;
+            border: none;
+            margin-top: 34px;
+        }
+
+        .delete {
+            background-color: red;
+            color: white;
+            border: none;
+             margin-top: 34px;
+        }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form id="recordForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="fatherName" placeholder="Father Name" required>
+        <input type="tel" id="mobile" placeholder="Mobile Number" 
+               pattern="[0-9]{10}" required title="Enter 10 digit mobile number">
+        <textarea id="address" placeholder="Address" required></textarea>
+        <input type="text" id="pincode" placeholder="Pincode" 
+               pattern="[0-9]{6}" required title="Enter 6 digit pincode">
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit" id="submitBtn">Save</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="recordTable"></tbody>
+    </table>
+        </div>
+        <script>
+    let records = [];
+    let editIndex = -1;
+
+    const form = document.getElementById("recordForm");
+    const table = document.getElementById("recordTable");
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const record = {
+            name: document.getElementById("name").value.trim(),
+            fatherName: document.getElementById("fatherName").value.trim(),
+            mobile: document.getElementById("mobile").value.trim(),
+            address: document.getElementById("address").value.trim(),
+            pincode: document.getElementById("pincode").value.trim(),
+            email: document.getElementById("email").value.trim()
+        };
+
+        if (editIndex === -1) {
+            records.push(record);
+        } else {
+            records[editIndex] = record;
+            editIndex = -1;
+        }
+
+        form.reset();
+        displayRecords();
+    });
+
+    function displayRecords() {
+        table.innerHTML = "";
+
+        records.forEach((rec, index) => {
+            table.innerHTML += `
+                <tr>
+                    <td>${rec.name}</td>
+                    <td>${rec.fatherName}</td>
+                    <td>${rec.mobile}</td>
+                    <td>${rec.address}</td>
+                    <td>${rec.pincode}</td>
+                    <td>${rec.email}</td>
+                    <td>
+                        <button class="action-btn edit" onclick="editRecord(${index})">Edit</button>
+                        <button class="action-btn delete" onclick="deleteRecord(${index})">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    function editRecord(index) {
+        const rec = records[index];
+
+        document.getElementById("name").value = rec.name;
+        document.getElementById("fatherName").value = rec.fatherName;
+        document.getElementById("mobile").value = rec.mobile;
+        document.getElementById("address").value = rec.address;
+        document.getElementById("pincode").value = rec.pincode;
+        document.getElementById("email").value = rec.email;
+
+        editIndex = index;
+    }
+
+    function deleteRecord(index) {
+        records.splice(index, 1);
+        displayRecords();
+    }
+</script>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form </title>
+         <style>
+       *{
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+       } 
+       body{
+        margin:0;
+        background: rgb(168, 168, 219);
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        min-height: 100vh;
+       }
+       .container{
+        background: white;
+        padding: 25px;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 10px;
+       }
+       h2{
+        text-align: center;
+        margin-bottom: 20px;
+       }
+       label{
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+       }
+       input,select,textarea{
+        width: 100%;
+        padding: 9px;
+        margin-top: 4px;
+        border-radius: 5px;
+       }
+       .inline.group{
+        margin-top: 8px;
+       }
+       .inline.group input{
+        width: auto;
+       }
+       button{
+        margin-top:19px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        background: color #4caf50;;
+        color: blue;
+        font-size: 16px;
+        cursor: pointer;
+       }
+       button:hover{
+        background-color: #45a049;
+       }
+       @media (max-width:480px) {
+        .container{
+            padding:16px;
+        } 
+       }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Registration Form</h2>
+            <form action="" onsubmit="return validation()">
+                <label for="about ">About You</label>
+                <input type="text" id="about" name="about you" />
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" value="" placeholder="Enter Your Name"/>
+                <label for="adress">Adress</label>
+                <textarea id="adress" name="adress" value="" rows="3" placeholder="Enter your Residence"></textarea>
+                <label for="phone">Phone No.</label>
+                <input type="tel"  id="phone" name="phone" value="" placeholder="Enter your phone number" />
+                <label for="gmail">Enter Your Gmail</label>
+                <input type="email" id="gmail" name="gmail" value="" placeholder="Enter your Email Id" />
+                <label for="LinkedIn">Enter your LinkedIn </label>
+                <input type="text" id="linkedin" name="linkedIn" name="" placeholder="Enter your LinkedIn"/>
+                <label for="cv">CV Upload</label>
+                <input type="file" id="cv" name="cv" placeholder="Enter your cv" />
+                 <label for="gender">Gender</label>
+               <div class="inline-group"> 
+              <!---<input type="radio" id="female" class="radio" name="gender" value="female" />Female
+                <input type="radio" id="male" class="radio" name="gender" value="male" />Male -->
+                <label for="course">Select Course</label>
+                <select id="course" name="course">
+                    <option value="">select course</option>
+                    <option value="salesforce">Salesforce CRM</option>
+                    <option value="web development">Web development</option>
+                    <option value="quality analyst">QA</option>
+                </select>
+               </div>
+               <button type="submit">Submit Details</button>  
+            </form>
+        </div>
+        <script>
+            function validation(){
+                let Name =document.getElementById("fullname").value;
+                let Mobile=document.getElementById("phone").value;
+                let About = document.getElementById("about").value;
+                let specialPattern=/[^A-Za-z0-9 ]/;
+                let namePattern=/^[A-Za-z ]+$/;
+                let numberPattern=/^[0-9]+$/;
+                   if(specialPattern.test(About)){
+                    alert("special character not allowed");
+                    document.getElementById("about").innerHTML=" ";
+                    return false;
+                }
+                if(!namePattern.test(Name)){
+                    alert("Name should contain only alphabets");
+                    return false;
+                }
+                if(!numberPattern.test(Mobile)){
+                    alert("phone should contain only number");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </body>
+</html>
+
