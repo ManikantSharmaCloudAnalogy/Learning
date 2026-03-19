@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <link rel="stylesheet" href="calculator.css" >
+    </head>
+<body>
+    <div class="calculator-cantainer">
+        <h2>Calculator</h2>
+        <form id="calcForm">
+            <input type="text" id="display" placeholder="Enter Your Calculation" required readonly />
+            <div class="buttons">
+             <button type="button" onclick="appendValue('7')">7</button>
+              <button type="button" onclick="appendValue('8')">8</button>
+               <button type="button" onclick="appendValue('9')">9</button>
+               <button type="button" onclick="appendValue('4')">4</button>
+               <button type="button" onclick="appendValue('5')">5</button>
+               <button type="button" onclick="appendValue('6')">6</button>
+               <button type="button" onclick="appendValue('1')">1</button>
+               <button type="button" onclick="appendValue('2')">2</button>
+               <button type="button" onclick="appendValue('3')">3</button>
+               <button type="button" onclick="appendValue('0')">0</button>
+               <button type="button" onclick="appendValue('-')">-</button>
+               <button type="button" onclick="appendValue('+')">+</button>
+               <button type="button" onclick="appendValue('.')">.</button>
+               <button type="button" onclick="appendValue('*')">*</button>
+               <button type="button" onclick="appendValue('/')">/</button>
+               <button type="button" onclick="calculate()">=</button>
+               <button type="button" class="clear" onclick="clearDisplay()">C</button>
+               <button type="button" class="delete" onclick="deleteLast()">DEL</button>
+            </div>
+        </form>
+    </div>
+<div class="history-container">
+                <h2>Calculation Table</h2>
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Expression</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+</div>
+</body>
+<script src="calculator.js"></script>
+</html>
